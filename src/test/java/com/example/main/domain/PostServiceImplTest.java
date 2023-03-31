@@ -11,6 +11,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
+import static com.example.main.fixtures.PostMockFactory.POST_ID;
+import static com.example.main.fixtures.PostMockFactory.buildPostMock;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -27,8 +29,8 @@ public class PostServiceImplTest {
     @Test
     void should_create_post_successfully() {
         // GIVEN
-        UUID postIdExpected = UUID.randomUUID();
-        Post newPost = new Post(postIdExpected, "My post");
+        UUID postIdExpected = POST_ID;
+        Post newPost = buildPostMock();
         when(createPostPort.createPost(any(Post.class))).thenReturn(postIdExpected);
 
         // WHEN

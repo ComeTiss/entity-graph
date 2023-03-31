@@ -1,9 +1,7 @@
 package com.example.main.infrastructure.api;
 
-import com.example.main.infrastructure.api.dto.CreatePostRequest;
 import com.example.main.infrastructure.spi.entity.PostEntity;
 import com.example.main.infrastructure.spi.repository.PostRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.List;
 
+import static com.example.main.fixtures.PostMockFactory.buildFormattedCreatePostRequest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -29,9 +28,6 @@ public class PostIntegrationTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
     private PostRepository postRepository;
 
     @BeforeEach
@@ -42,8 +38,7 @@ public class PostIntegrationTest {
     @Test
     void should_create_post_successfully() throws Exception {
         // GIVEN
-        CreatePostRequest requestBody = new CreatePostRequest("A great post #1");
-        String requestBodyFormatted = objectMapper.writeValueAsString(requestBody);
+        String requestBodyFormatted = buildFormattedCreatePostRequest();
 
         // WHEN
         ResultActions result = mockMvc.perform(post("/posts")

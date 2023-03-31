@@ -12,6 +12,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
+import static com.example.main.fixtures.PostMockFactory.POST_ID;
+import static com.example.main.fixtures.PostMockFactory.buildPostMock;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -28,8 +30,8 @@ public class CreatePostAdapterTest {
     @Test
     void should_create_post_call_persistence_layer() {
         // GIVEN
-        UUID postIdExpected = UUID.randomUUID();
-        Post newPost = new Post(postIdExpected, "My post");
+        UUID postIdExpected = POST_ID;
+        Post newPost = buildPostMock();
         when(postRepository.save(any(PostEntity.class))).thenReturn(PostEntity.buildFrom(newPost));
 
         // WHEN
