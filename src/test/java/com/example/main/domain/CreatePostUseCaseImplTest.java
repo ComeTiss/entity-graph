@@ -1,9 +1,8 @@
-package com.example.main.infrastructure.spi;
+package com.example.main.domain;
 
 import com.example.main.domain.post.Post;
-import com.example.main.infrastructure.spi.adapters.CreatePostAdapter;
-import com.example.main.infrastructure.spi.entity.PostEntity;
-import com.example.main.infrastructure.spi.repository.PostRepository;
+import com.example.main.domain.post.port.CreatePostPort;
+import com.example.main.domain.post.usecase.CreatePostUseCaseImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,26 +18,26 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class CreatePostAdapterTest {
+public class CreatePostUseCaseImplTest {
 
     @Mock
-    private PostRepository postRepository;
+    private CreatePostPort createPostPort;
 
     @InjectMocks
-    private CreatePostAdapter createPostAdapter;
+    private CreatePostUseCaseImpl postService;
 
     @Test
-    void should_create_post_call_persistence_layer() {
+    void should_create_post_call_port() {
         // GIVEN
         UUID postIdExpected = POST_ID;
         Post newPost = buildPostMock();
-        when(postRepository.save(any(PostEntity.class))).thenReturn(PostEntity.buildFrom(newPost));
+        when(createPostPort.createPost(any(Post.class))).thenReturn(postIdExpected);
 
         // WHEN
-        UUID postId = createPostAdapter.createPost(newPost);
+        UUID postId = postService.createPost(newPost);
 
         // THEN
         assertThat(postId).isEqualTo(postIdExpected);
-        verify(postRepository, atLeastOnce()).save(any(PostEntity.class));
+        verify(createPostPort, atLeastOnce()).createPost(any());
     }
 }

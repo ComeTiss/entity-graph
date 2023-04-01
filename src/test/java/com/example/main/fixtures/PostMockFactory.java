@@ -5,6 +5,7 @@ import com.example.main.infrastructure.api.dto.CreatePostRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.List;
 import java.util.UUID;
 
 public class PostMockFactory {
@@ -17,6 +18,10 @@ public class PostMockFactory {
 
     public static Post buildPostMock() {
         return new Post(POST_ID, POST_TITLE);
+    }
+
+    public static List<Post> buildPostsMock() {
+        return List.of(buildPostMock());
     }
 
     public static String buildFormattedCreatePostRequest() throws JsonProcessingException {

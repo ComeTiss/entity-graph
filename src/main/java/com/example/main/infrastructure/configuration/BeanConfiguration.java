@@ -1,8 +1,11 @@
 package com.example.main.infrastructure.configuration;
 
-import com.example.main.domain.post.PostService;
-import com.example.main.domain.post.PostServiceImpl;
-import com.example.main.domain.post.ports.CreatePostPort;
+import com.example.main.domain.post.port.CreatePostPort;
+import com.example.main.domain.post.port.GetAllPostsPort;
+import com.example.main.domain.post.usecase.CreatePostUseCase;
+import com.example.main.domain.post.usecase.CreatePostUseCaseImpl;
+import com.example.main.domain.post.usecase.GetAllPostsUseCase;
+import com.example.main.domain.post.usecase.GetAllPostsUseCaseImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,7 +13,12 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfiguration {
 
     @Bean
-    PostService postService(CreatePostPort createPostPort) {
-        return new PostServiceImpl(createPostPort);
+    CreatePostUseCase createPostUseCase(CreatePostPort createPostPort) {
+        return new CreatePostUseCaseImpl(createPostPort);
+    }
+
+    @Bean
+    GetAllPostsUseCase getAllPostsUseCase(GetAllPostsPort getAllPostsPort) {
+        return new GetAllPostsUseCaseImpl(getAllPostsPort);
     }
 }

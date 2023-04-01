@@ -1,7 +1,7 @@
 package com.example.main.infrastructure.api.controller;
 
 import com.example.main.domain.post.Post;
-import com.example.main.domain.post.PostService;
+import com.example.main.domain.post.usecase.CreatePostUseCase;
 import com.example.main.infrastructure.api.dto.CreatePostRequest;
 import com.example.main.infrastructure.api.dto.CreatePostResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +14,12 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/posts")
-public class PostController {
+public class CreatePostController {
 
-    private PostService postService;
+    private CreatePostUseCase postService;
 
     @Autowired
-    public PostController(PostService postService) {
+    public CreatePostController(CreatePostUseCase postService) {
         this.postService = postService;
     }
 

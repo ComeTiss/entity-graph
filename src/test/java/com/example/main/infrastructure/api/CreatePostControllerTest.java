@@ -1,6 +1,7 @@
 package com.example.main.infrastructure.api;
 
-import com.example.main.domain.post.PostService;
+import com.example.main.domain.post.usecase.CreatePostUseCase;
+import com.example.main.infrastructure.api.controller.CreatePostController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -20,21 +21,21 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest
-public class PostControllerTest {
+@WebMvcTest(controllers = {CreatePostController.class})
+public class CreatePostControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private PostService postService;
+    private CreatePostUseCase createPostUseCase;
 
     @Test
     void should_create_post_return_success() throws Exception {
         // GIVEN
         String requestBodyFormatted = buildFormattedCreatePostRequest();
         UUID postIdExpected = POST_ID;
-        when(postService.createPost(any())).thenReturn(postIdExpected);
+        when(createPostUseCase.createPost(any())).thenReturn(postIdExpected);
 
         // WHEN
         ResultActions result = mockMvc.perform(post("/posts")
