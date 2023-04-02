@@ -1,9 +1,7 @@
 package com.example.main.infrastructure.api;
 
 import com.example.main.domain.comment.usecase.CommentPostUseCase;
-import com.example.main.domain.post.usecase.CreatePostUseCase;
 import com.example.main.infrastructure.api.controller.CommentPostController;
-import com.example.main.infrastructure.api.controller.CreatePostController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -16,8 +14,6 @@ import java.util.UUID;
 
 import static com.example.main.fixtures.CommentMockFactory.COMMENT_ID;
 import static com.example.main.fixtures.CommentMockFactory.buildFormattedCommentPostRequest;
-import static com.example.main.fixtures.PostMockFactory.POST_ID;
-import static com.example.main.fixtures.PostMockFactory.buildFormattedCreatePostRequest;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;

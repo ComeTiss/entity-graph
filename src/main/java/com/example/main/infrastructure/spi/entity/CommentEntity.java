@@ -1,7 +1,6 @@
 package com.example.main.infrastructure.spi.entity;
 
 import com.example.main.domain.comment.Comment;
-import com.example.main.domain.post.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,7 +30,7 @@ public class CommentEntity {
         CommentEntity commentEntity = new CommentEntity();
         commentEntity.setId(comment.getId());
         commentEntity.setPost(post);
-        commentEntity.setText(commentEntity.getText());
+        commentEntity.setText(comment.getText());
         return commentEntity;
     }
 }

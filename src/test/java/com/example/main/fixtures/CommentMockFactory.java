@@ -3,11 +3,9 @@ package com.example.main.fixtures;
 import com.example.main.domain.comment.Comment;
 import com.example.main.domain.post.Post;
 import com.example.main.infrastructure.api.dto.CommentPostRequest;
-import com.example.main.infrastructure.api.dto.CreatePostRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.List;
 import java.util.UUID;
 
 import static com.example.main.fixtures.PostMockFactory.POST_ID;
@@ -21,9 +19,13 @@ public class CommentMockFactory {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
+    public static Comment buildCommentMock(UUID postId) {
+        return new Comment(postId, COMMENT_TEXT);
+    }
+
     public static Comment buildCommentMock() {
         Post post = buildPostMock();
-        return new Comment(post.getId(), COMMENT_TEXT);
+        return buildCommentMock(post.getId());
     }
 
     public static String buildFormattedCommentPostRequest(UUID postId) throws JsonProcessingException {

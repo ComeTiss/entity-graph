@@ -1,31 +1,33 @@
 package com.example.main.infrastructure.spi.mapper;
 
+import com.example.main.domain.comment.Comment;
 import com.example.main.domain.post.Post;
+import com.example.main.infrastructure.spi.entity.CommentEntity;
 import com.example.main.infrastructure.spi.entity.PostEntity;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static com.example.main.fixtures.CommentEntityMockFactory.buildCommentEntityMock;
 import static com.example.main.fixtures.PostEntityMockFactory.buildPostEntitiesMock;
-import static com.example.main.fixtures.PostEntityMockFactory.buildPostEntityMock;
-import static com.example.main.infrastructure.spi.mapper.PostEntityMapper.toPost;
+import static com.example.main.infrastructure.spi.mapper.CommentEntityMapper.toComment;
 import static com.example.main.infrastructure.spi.mapper.PostEntityMapper.toPosts;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PostEntityMapperTest {
+public class CommentEntityMapperTest {
 
     @Test
-    void should_map_post_entity_to_post_correctly() {
+    void should_map_comment_entity_to_comment_correctly() {
         // GIVEN
-        PostEntity postEntity = buildPostEntityMock();
+        CommentEntity commentEntity = buildCommentEntityMock();
 
         // WHEN
-        Post postMapped = toPost(postEntity);
+        Comment commentMapped = toComment(commentEntity);
 
         // THEN
-        assertThat(postMapped.getId()).isEqualTo(postEntity.getId());
-        assertThat(postMapped.getTitle()).isEqualTo(postEntity.getTitle());
-        assertThat(postMapped.getComments()).hasSameSizeAs(postEntity.getComments());
+        assertThat(commentMapped.getId()).isEqualTo(commentEntity.getId());
+        assertThat(commentMapped.getPostId()).isEqualTo(commentEntity.getPost().getId());
+        assertThat(commentMapped.getText()).isEqualTo(commentEntity.getText());
     }
 
     @Test

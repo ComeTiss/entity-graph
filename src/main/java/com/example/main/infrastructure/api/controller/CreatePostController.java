@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequestMapping("/posts")
 public class CreatePostController {
 
-    private CreatePostUseCase postService;
+    private final CreatePostUseCase postService;
 
     @Autowired
     public CreatePostController(CreatePostUseCase postService) {

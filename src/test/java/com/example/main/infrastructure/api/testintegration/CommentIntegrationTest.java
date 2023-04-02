@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.List;
 
+import static com.example.main.fixtures.CommentMockFactory.COMMENT_TEXT;
 import static com.example.main.fixtures.CommentMockFactory.buildFormattedCommentPostRequest;
 import static com.example.main.fixtures.PostMockFactory.POST_ID;
 import static com.example.main.fixtures.PostMockFactory.buildPostMock;
@@ -59,6 +60,8 @@ public class CommentIntegrationTest {
 
         List<CommentEntity> comments = commentRepository.findAll();
         assertThat(comments.size()).isOne();
+        assertThat(comments.get(0).getPost().getId()).isEqualTo(post.getId());
+        assertThat(comments.get(0).getText()).isEqualTo(COMMENT_TEXT);
     }
 
     @Test
@@ -77,6 +80,6 @@ public class CommentIntegrationTest {
                 .andExpect(jsonPath("$.commentId").value(nullValue()));
 
         List<CommentEntity> comments = commentRepository.findAll();
-        assertThat(comments.size()).isZero();
+        assertThat(comments).isEmpty();
     }
 }

@@ -1,6 +1,5 @@
 package com.example.main.domain.post;
 
-import com.example.main.domain.post.Post;
 import com.example.main.domain.post.port.GetAllPostsPort;
 import com.example.main.domain.post.usecase.GetAllPostsUseCaseImpl;
 import org.junit.jupiter.api.Test;

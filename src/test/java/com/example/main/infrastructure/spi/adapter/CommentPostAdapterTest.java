@@ -15,8 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.example.main.fixtures.CommentEntityMockFactory.buildCommentEntityMock;
-import static com.example.main.fixtures.CommentMockFactory.COMMENT_TEXT;
 import static com.example.main.fixtures.CommentMockFactory.buildCommentMock;
 import static com.example.main.fixtures.PostEntityMockFactory.buildPostEntityMock;
 import static com.example.main.fixtures.PostMockFactory.POST_ID;

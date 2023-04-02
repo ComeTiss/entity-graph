@@ -1,6 +1,5 @@
 package com.example.main.domain.comment;
 
-import com.example.main.domain.post.Post;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

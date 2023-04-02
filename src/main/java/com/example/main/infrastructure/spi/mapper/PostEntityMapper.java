@@ -5,11 +5,16 @@ import com.example.main.infrastructure.spi.entity.PostEntity;
 
 import java.util.List;
 
+import static com.example.main.infrastructure.spi.mapper.CommentEntityMapper.toComments;
+
 public class PostEntityMapper {
     private PostEntityMapper() {}
 
     public static Post toPost(PostEntity postEntity) {
-        return new Post(postEntity.getId(), postEntity.getTitle());
+        return new Post(
+                postEntity.getId(),
+                postEntity.getTitle(),
+                toComments(postEntity.getComments()));
     }
 
     public static List<Post> toPosts(List<PostEntity> postEntities) {

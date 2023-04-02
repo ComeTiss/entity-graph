@@ -8,7 +8,6 @@ import java.util.List;
 
 import static com.example.main.fixtures.CommentMockFactory.buildCommentMock;
 import static com.example.main.fixtures.PostEntityMockFactory.buildPostEntityMock;
-import static com.example.main.fixtures.PostMockFactory.buildPostMock;
 
 public class CommentEntityMockFactory {
     private CommentEntityMockFactory() {}

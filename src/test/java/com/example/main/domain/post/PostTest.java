@@ -1,6 +1,5 @@
 package com.example.main.domain.post;
 
-import com.example.main.domain.post.Post;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;

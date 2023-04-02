@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/posts")
 public class GetAllPostsController {
 
-    private GetAllPostsUseCase postService;
+    private final GetAllPostsUseCase postService;
 
     @Autowired
     public GetAllPostsController(GetAllPostsUseCase postService) {
