@@ -1,4 +1,4 @@
-package com.example.main.domain;
+package com.example.main.domain.post;
 
 import com.example.main.domain.post.Post;
 import org.junit.jupiter.api.Test;
@@ -10,10 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PostTest {
 
     @Test
-    void should_create_post() {
+    void should_construct_post_object() {
         // GIVEN & WHEN
         String postTitle = "My post";
-        Post post = Post.create(postTitle);
+        Post post = new Post(postTitle);
 
         // THEN
         assertThat(post).isNotNull();

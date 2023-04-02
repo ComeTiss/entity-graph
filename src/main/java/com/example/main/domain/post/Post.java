@@ -11,7 +11,8 @@ public class Post {
     private final UUID id;
     private final String title;
 
-    public static Post create(String title) {
-        return new Post(UUID.randomUUID(), title);
+    public Post(String title) {
+        this.id = UUID.randomUUID();
+        this.title = title;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.main.domain;
+package com.example.main.domain.post;
 
 import com.example.main.domain.post.Post;
 import com.example.main.domain.post.port.GetAllPostsPort;

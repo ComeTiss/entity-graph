@@ -25,7 +25,7 @@ public class CreatePostController {
 
     @PostMapping
     CreatePostResponse createPost(@RequestBody CreatePostRequest createPostRequest) {
-       Post newPost = Post.create(createPostRequest.title());
+       Post newPost = new Post(createPostRequest.title());
        UUID postId = postService.createPost(newPost);
        return new CreatePostResponse(postId);
     }
