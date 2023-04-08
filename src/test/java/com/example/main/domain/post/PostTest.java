@@ -1,8 +1,7 @@
 package com.example.main.domain.post;
 
+import com.example.main.domain.Id;
 import org.junit.jupiter.api.Test;
-
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,7 +15,7 @@ public class PostTest {
 
         // THEN
         assertThat(post).isNotNull();
-        assertThat(post.getId()).isInstanceOf(UUID.class);
+        assertThat(post.getId()).isInstanceOf(Id.class);
         assertThat(post.getTitle()).isEqualTo(postTitle);
     }
 }

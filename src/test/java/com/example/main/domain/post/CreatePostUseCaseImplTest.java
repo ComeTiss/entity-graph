@@ -1,5 +1,6 @@
 package com.example.main.domain.post;
 
+import com.example.main.domain.Id;
 import com.example.main.domain.post.port.CreatePostPort;
 import com.example.main.domain.post.usecase.CreatePostUseCaseImpl;
 import org.junit.jupiter.api.Test;
@@ -7,8 +8,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.UUID;
 
 import static com.example.main.fixtures.PostMockFactory.POST_ID;
 import static com.example.main.fixtures.PostMockFactory.buildPostMock;
@@ -28,12 +27,12 @@ public class CreatePostUseCaseImplTest {
     @Test
     void should_create_post_call_port() {
         // GIVEN
-        UUID postIdExpected = POST_ID;
+        Id postIdExpected = POST_ID;
         Post newPost = buildPostMock();
         when(createPostPort.createPost(any(Post.class))).thenReturn(postIdExpected);
 
         // WHEN
-        UUID postId = postService.createPost(newPost);
+        Id postId = postService.createPost(newPost);
 
         // THEN
         assertThat(postId).isEqualTo(postIdExpected);

@@ -4,12 +4,10 @@ import com.example.main.domain.post.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @NamedEntityGraph(
         name = "post-with-comments",
@@ -24,9 +22,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class PostEntity {
 
-    @Id
-    @Type(type="org.hibernate.type.UUIDCharType")
-    private UUID id;
+    @EmbeddedId
+    private EntityId id = new EntityId();
 
     private String title;
 
@@ -35,7 +32,7 @@ public class PostEntity {
 
     public static PostEntity buildFrom(Post post) {
         PostEntity postEntity = new PostEntity();
-        postEntity.setId(post.getId());
+        postEntity.setId(new EntityId(post.getId()));
         postEntity.setTitle(post.getTitle());
         postEntity.setComments(new HashSet<>());
         return postEntity;

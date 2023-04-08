@@ -1,5 +1,6 @@
 package com.example.main.infrastructure.spi.mapper;
 
+import com.example.main.domain.Id;
 import com.example.main.domain.post.Post;
 import com.example.main.infrastructure.spi.entity.PostEntity;
 
@@ -12,14 +13,14 @@ public class PostEntityMapper {
 
     public static Post toPost(PostEntity postEntity) {
         return new Post(
-                postEntity.getId(),
+                new Id(postEntity.getId().getId()),
                 postEntity.getTitle(),
                 null);
     }
 
     public static Post toPostDetail(PostEntity postEntity) {
         return new Post(
-                postEntity.getId(),
+                new Id(postEntity.getId().getId()),
                 postEntity.getTitle(),
                 toComments(postEntity.getComments()));
     }

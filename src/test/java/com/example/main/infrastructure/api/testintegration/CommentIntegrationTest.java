@@ -1,5 +1,6 @@
 package com.example.main.infrastructure.api.testintegration;
 
+import com.example.main.domain.Id;
 import com.example.main.infrastructure.spi.entity.CommentEntity;
 import com.example.main.infrastructure.spi.entity.PostEntity;
 import com.example.main.infrastructure.spi.repository.CommentRepository;
@@ -46,7 +47,8 @@ public class CommentIntegrationTest {
     void should_comment_post_successfully() throws Exception {
         // GIVEN
         PostEntity post = postRepository.save(PostEntity.buildFrom(buildPostMock()));
-        String requestBodyFormatted = buildFormattedCommentPostRequest(post.getId());
+        Id postId = new Id(post.getId().getId());
+        String requestBodyFormatted = buildFormattedCommentPostRequest(postId);
 
         // WHEN
         ResultActions result = mockMvc.perform(post("/posts/comments")
@@ -60,7 +62,7 @@ public class CommentIntegrationTest {
 
         List<CommentEntity> comments = commentRepository.findAll();
         assertThat(comments.size()).isOne();
-        assertThat(comments.get(0).getPost().getId()).isEqualTo(post.getId());
+        assertThat(comments.get(0).getPost().getId().getId()).isEqualTo(post.getId().getId());
         assertThat(comments.get(0).getText()).isEqualTo(COMMENT_TEXT);
     }
 

@@ -1,5 +1,6 @@
 package com.example.main.infrastructure.api.testintegration;
 
+import com.example.main.domain.Id;
 import com.example.main.infrastructure.spi.entity.CommentEntity;
 import com.example.main.infrastructure.spi.entity.PostEntity;
 import com.example.main.infrastructure.spi.repository.CommentRepository;
@@ -64,7 +65,8 @@ public class PostIntegrationTest {
     void should_get_all_posts_without_details_successfully() throws Exception {
         // GIVEN
         PostEntity postSaved = postRepository.save(PostEntity.buildFrom(buildPostMock()));
-        commentRepository.save(CommentEntity.buildFrom(postSaved, buildCommentMock(postSaved.getId())));
+        Id postId = new Id(postSaved.getId().getId());
+        commentRepository.save(CommentEntity.buildFrom(postSaved, buildCommentMock(postId)));
 
         // WHEN
         ResultActions result = mockMvc.perform(get("/posts"));
@@ -80,7 +82,8 @@ public class PostIntegrationTest {
     void should_get_all_posts_with_details_successfully() throws Exception {
         // GIVEN
         PostEntity postSaved = postRepository.save(PostEntity.buildFrom(buildPostMock()));
-        commentRepository.save(CommentEntity.buildFrom(postSaved, buildCommentMock(postSaved.getId())));
+        Id postId = new Id(postSaved.getId().getId());
+        commentRepository.save(CommentEntity.buildFrom(postSaved, buildCommentMock(postId)));
 
         // WHEN
         ResultActions result = mockMvc.perform(get("/posts/details"));

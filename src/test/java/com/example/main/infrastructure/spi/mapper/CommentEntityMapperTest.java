@@ -25,8 +25,8 @@ public class CommentEntityMapperTest {
         Comment commentMapped = toComment(commentEntity);
 
         // THEN
-        assertThat(commentMapped.getId()).isEqualTo(commentEntity.getId());
-        assertThat(commentMapped.getPostId()).isEqualTo(commentEntity.getPost().getId());
+        assertThat(commentMapped.getId().getValue()).isEqualTo(commentEntity.getId().getId());
+        assertThat(commentMapped.getPostId().getValue()).isEqualTo(commentEntity.getPost().getId().getId());
         assertThat(commentMapped.getText()).isEqualTo(commentEntity.getText());
     }
 
@@ -40,7 +40,7 @@ public class CommentEntityMapperTest {
 
         // THEN
         assertThat(postsMapped).hasSameSizeAs(postEntities);
-        assertThat(postsMapped.get(0).getId()).isEqualTo(postEntities.get(0).getId());
+        assertThat(postsMapped.get(0).getId().getValue()).isEqualTo(postEntities.get(0).getId().getId());
         assertThat(postsMapped.get(0).getTitle()).isEqualTo(postEntities.get(0).getTitle());
     }
 }

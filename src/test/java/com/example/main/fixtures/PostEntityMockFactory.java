@@ -9,7 +9,6 @@ import static com.example.main.fixtures.PostMockFactory.buildPostWithoutCommentM
 
 public class PostEntityMockFactory {
     private PostEntityMockFactory() {}
-
     public static PostEntity buildPostEntityMock() {
         return PostEntity.buildFrom(buildPostMock());
     }

@@ -1,5 +1,6 @@
 package com.example.main.infrastructure.spi.mapper;
 
+import com.example.main.domain.Id;
 import com.example.main.domain.comment.Comment;
 import com.example.main.infrastructure.spi.entity.CommentEntity;
 
@@ -11,8 +12,8 @@ public class CommentEntityMapper {
 
     public static Comment toComment(CommentEntity commentEntity) {
         return new Comment(
-                commentEntity.getId(),
-                commentEntity.getPost().getId(),
+                new Id(commentEntity.getId().getId()),
+                new Id(commentEntity.getPost().getId().getId()),
                 commentEntity.getText()
         );
     }

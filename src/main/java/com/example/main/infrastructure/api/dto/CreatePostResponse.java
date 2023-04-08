@@ -1,6 +1,6 @@
 package com.example.main.infrastructure.api.dto;
 
-import java.util.UUID;
+import com.example.main.domain.Id;
 
-public record CreatePostResponse(UUID postId) {
+public record CreatePostResponse(Id postId) {
 }

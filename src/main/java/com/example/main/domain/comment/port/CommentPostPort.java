@@ -1,9 +1,8 @@
 package com.example.main.domain.comment.port;
 
+import com.example.main.domain.Id;
 import com.example.main.domain.comment.Comment;
 
-import java.util.UUID;
-
 public interface CommentPostPort {
-    UUID commentPost(UUID postId, Comment comment);
+    Id commentPost(Id postId, Comment comment);
 }

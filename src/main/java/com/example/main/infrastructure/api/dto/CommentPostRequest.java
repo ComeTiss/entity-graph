@@ -1,6 +1,6 @@
 package com.example.main.infrastructure.api.dto;
 
-import java.util.UUID;
+import com.example.main.domain.Id;
 
-public record CommentPostRequest(UUID postId, String comment) {
+public record CommentPostRequest(Id postId, String comment) {
 }

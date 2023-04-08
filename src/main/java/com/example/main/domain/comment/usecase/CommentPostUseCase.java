@@ -1,7 +1,7 @@
 package com.example.main.domain.comment.usecase;
 
-import java.util.UUID;
+import com.example.main.domain.Id;
 
 public interface CommentPostUseCase {
-    UUID commentPost(UUID postId, String commentText);
+    Id commentPost(Id postId, String commentText);
 }

@@ -4,10 +4,8 @@ import com.example.main.domain.comment.Comment;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,9 +14,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class CommentEntity {
 
-    @Id
-    @Type(type="org.hibernate.type.UUIDCharType")
-    private UUID id;
+    @EmbeddedId
+    private EntityId id = new EntityId();
 
     private String text;
 
@@ -28,7 +25,7 @@ public class CommentEntity {
 
     public static CommentEntity buildFrom(PostEntity post, Comment comment) {
         CommentEntity commentEntity = new CommentEntity();
-        commentEntity.setId(comment.getId());
+        commentEntity.setId(new EntityId(comment.getId()));
         commentEntity.setPost(post);
         commentEntity.setText(comment.getText());
         return commentEntity;

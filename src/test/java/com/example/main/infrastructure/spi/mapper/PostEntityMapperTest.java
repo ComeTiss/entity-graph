@@ -21,7 +21,7 @@ public class PostEntityMapperTest {
         Post postMapped = toPost(postEntity);
 
         // THEN
-        assertThat(postMapped.getId()).isEqualTo(postEntity.getId());
+        assertThat(postMapped.getId().getValue()).isEqualTo(postEntity.getId().getId());
         assertThat(postMapped.getTitle()).isEqualTo(postEntity.getTitle());
         assertThat(postMapped.getComments()).isNull();
     }
@@ -36,7 +36,7 @@ public class PostEntityMapperTest {
 
         // THEN
         assertThat(postsMapped).hasSameSizeAs(postEntities);
-        assertThat(postsMapped.get(0).getId()).isEqualTo(postEntities.get(0).getId());
+        assertThat(postsMapped.get(0).getId().getValue()).isEqualTo(postEntities.get(0).getId().getId());
         assertThat(postsMapped.get(0).getTitle()).isEqualTo(postEntities.get(0).getTitle());
         assertThat(postsMapped.get(0).getComments()).isNull();
     }
@@ -50,7 +50,7 @@ public class PostEntityMapperTest {
         Post postMapped = toPostDetail(postEntity);
 
         // THEN
-        assertThat(postMapped.getId()).isEqualTo(postEntity.getId());
+        assertThat(postMapped.getId().getValue()).isEqualTo(postEntity.getId().getId());
         assertThat(postMapped.getTitle()).isEqualTo(postEntity.getTitle());
         assertThat(postMapped.getComments()).hasSameSizeAs(postEntity.getComments());
     }
@@ -65,7 +65,7 @@ public class PostEntityMapperTest {
 
         // THEN
         assertThat(postsMapped).hasSameSizeAs(postEntities);
-        assertThat(postsMapped.get(0).getId()).isEqualTo(postEntities.get(0).getId());
+        assertThat(postsMapped.get(0).getId().getValue()).isEqualTo(postEntities.get(0).getId().getId());
         assertThat(postsMapped.get(0).getTitle()).isEqualTo(postEntities.get(0).getTitle());
         assertThat(postsMapped.get(0).getComments()).hasSameSizeAs(postEntities.get(0).getComments());
     }

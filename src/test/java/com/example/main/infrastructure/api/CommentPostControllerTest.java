@@ -1,5 +1,6 @@
 package com.example.main.infrastructure.api;
 
+import com.example.main.domain.Id;
 import com.example.main.domain.comment.usecase.CommentPostUseCase;
 import com.example.main.infrastructure.api.controller.CommentPostController;
 import org.junit.jupiter.api.Test;
@@ -9,8 +10,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-
-import java.util.UUID;
 
 import static com.example.main.fixtures.CommentMockFactory.COMMENT_ID;
 import static com.example.main.fixtures.CommentMockFactory.buildFormattedCommentPostRequest;
@@ -34,7 +33,7 @@ public class CommentPostControllerTest {
     void should_comment_post_return_success() throws Exception {
         // GIVEN
         String requestBodyFormatted = buildFormattedCommentPostRequest();
-        UUID commentIdExpected = COMMENT_ID;
+        Id commentIdExpected = COMMENT_ID;
         when(commentPostUseCase.commentPost(any(), any())).thenReturn(commentIdExpected);
 
         // WHEN
@@ -45,6 +44,6 @@ public class CommentPostControllerTest {
         // THEN
         result
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.commentId", is(commentIdExpected.toString())));
+                .andExpect(jsonPath("$.commentId.value", is(commentIdExpected.getValue().toString())));
     }
 }
