@@ -6,14 +6,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+@NamedEntityGraph(
+        name = "post-with-comments",
+        attributeNodes =  {
+                @NamedAttributeNode("comments")
+        }
+)
 @Getter
 @Setter
 @Entity
@@ -27,8 +30,8 @@ public class PostEntity {
 
     private String title;
 
-    @OneToMany(mappedBy = "post")
-    private Set<CommentEntity> comments;
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+    private Set<CommentEntity> comments = new HashSet<>();
 
     public static PostEntity buildFrom(Post post) {
         PostEntity postEntity = new PostEntity();

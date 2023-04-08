@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static com.example.main.fixtures.PostEntityMockFactory.buildPostEntitiesMock;
+import static com.example.main.fixtures.PostEntityMockFactory.buildPostEntitiesWithoutCommentMock;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -35,5 +36,18 @@ public class GetAllPostsAdapterTest {
         // THEN
         assertThat(posts).hasSize(1);
         verify(postRepository, atLeastOnce()).findAll();
+    }
+
+    @Test
+    void should_get_all_posts_details_call_persistence_layer() {
+        // GIVEN
+        when(postRepository.findByIdNotNull()).thenReturn(buildPostEntitiesWithoutCommentMock());
+
+        // WHEN
+        List<Post> posts = getAllPostsAdapter.getAllPostsDetails();
+
+        // THEN
+        assertThat(posts).hasSize(1);
+        verify(postRepository, atLeastOnce()).findByIdNotNull();
     }
 }

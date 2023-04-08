@@ -22,7 +22,7 @@ public class CommentEntity {
 
     private String text;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "postId", nullable = false)
     private PostEntity post;
 

@@ -15,4 +15,9 @@ public class GetAllPostsUseCaseImpl implements GetAllPostsUseCase {
     public List<Post> getAllPosts() {
         return getAllPostsPort.getAllPosts();
     }
+
+    @Override
+    public List<Post> getAllPostsDetails() {
+        return getAllPostsPort.getAllPostsDetails();
+    }
 }

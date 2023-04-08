@@ -20,9 +20,17 @@ public class PostMockFactory {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
+    public static Post buildPostMock(Set<Comment> comments) {
+        return new Post(POST_ID, POST_TITLE, comments);
+    }
+
     public static Post buildPostMock() {
         Comment comment = buildCommentMock(POST_ID);
-        return new Post(POST_ID, POST_TITLE, Set.of(comment));
+        return buildPostMock(Set.of(comment));
+    }
+
+    public static Post buildPostWithoutCommentMock() {
+        return buildPostMock(Set.of());
     }
 
     public static List<Post> buildPostsMock() {

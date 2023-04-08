@@ -20,8 +20,7 @@ import static com.example.main.fixtures.CommentMockFactory.buildCommentMock;
 import static com.example.main.fixtures.PostMockFactory.buildFormattedCreatePostRequest;
 import static com.example.main.fixtures.PostMockFactory.buildPostMock;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -62,13 +61,29 @@ public class PostIntegrationTest {
     }
 
     @Test
-    void should_get_all_posts_successfully() throws Exception {
+    void should_get_all_posts_without_details_successfully() throws Exception {
         // GIVEN
         PostEntity postSaved = postRepository.save(PostEntity.buildFrom(buildPostMock()));
-        CommentEntity commentSaved = commentRepository.save(CommentEntity.buildFrom(postSaved, buildCommentMock(postSaved.getId())));
+        commentRepository.save(CommentEntity.buildFrom(postSaved, buildCommentMock(postSaved.getId())));
 
         // WHEN
         ResultActions result = mockMvc.perform(get("/posts"));
+
+        // THEN
+        result
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.posts", hasSize(1)))
+                .andExpect(jsonPath("$.posts[0].comments", nullValue()));
+    }
+
+    @Test
+    void should_get_all_posts_with_details_successfully() throws Exception {
+        // GIVEN
+        PostEntity postSaved = postRepository.save(PostEntity.buildFrom(buildPostMock()));
+        commentRepository.save(CommentEntity.buildFrom(postSaved, buildCommentMock(postSaved.getId())));
+
+        // WHEN
+        ResultActions result = mockMvc.perform(get("/posts/details"));
 
         // THEN
         result

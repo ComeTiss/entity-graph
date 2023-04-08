@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface GetAllPostsUseCase {
     List<Post> getAllPosts();
+    List<Post> getAllPostsDetails();
 }

@@ -22,4 +22,9 @@ public class GetAllPostsController {
     GetAllPostsResponse getAllPosts() {
         return new GetAllPostsResponse(postService.getAllPosts());
     }
+
+    @GetMapping("/details")
+    GetAllPostsResponse getAllPostDetails() {
+        return new GetAllPostsResponse(postService.getAllPostsDetails());
+    }
 }
